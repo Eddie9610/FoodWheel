@@ -13,7 +13,6 @@ struct LiquidSwipeView: View {
     
     @State var leftData = SliderData(side: .left)
     @State var rightData = SliderData(side: .right)
-
     @State var topSlider = SliderSide.right
     @State var sliderOffset: CGFloat = 0
     

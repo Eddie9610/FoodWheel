@@ -11,7 +11,6 @@ import UserNotifications
 
 struct TimerView: View {
     
-    
     @ObservedObject var timerData = TimerData()
         
     @State var SeletedTimerNumMin = 0
