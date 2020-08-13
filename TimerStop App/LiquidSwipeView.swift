@@ -8,43 +8,47 @@
 
 import SwiftUI
 var pageIndex = 0
-//var page : pages = .homepage
+var currentPage : pages = .homepage
+
 struct LiquidSwipeView: View {
     
     @State var leftData = SliderData(side: .left)
     @State var rightData = SliderData(side: .right)
+
     @State var topSlider = SliderSide.right
     @State var sliderOffset: CGFloat = 0
     
+    
     var body: some View {
-        
         ZStack {
-            TimerView()
-            slider(data: $leftData)
-            slider(data: $rightData)
+            if currentPage == .homepage {
+                HomeView()
+                slider(data: $leftData, side: .left)
+                slider(data: $rightData, side: .right)
+            }
+            else if currentPage == .stopwatch {
+                StopWatchView()
+                slider(data: $leftData, side: .left)
+            }
+            else if currentPage == .timer {
+                TimerView()
+                slider(data: $rightData, side: .right)
+            }
+            
         }
         .edgesIgnoringSafeArea(.all)
     }
 
-    func slider(data: Binding<SliderData>) -> some View {
+    func slider(data: Binding<SliderData>, side : SliderSide) -> some View {
         let value = data.wrappedValue
         return ZStack {
-            
-            wave(data: data)
+            wave(data: data,side: side)
             button(data: value)
         }
         .zIndex(topSlider == value.side ? 1 : 0)
         .offset(x: value.side == .left ? -sliderOffset : sliderOffset)
     }
 
-//    func content() -> some View {
-//        return TimerView()
-//
-//        //HStack {
-//                //Text("Hello, World!")
-//            //Rectangle().foregroundColor(Config.colors[pageIndex])
-//        //}
-//    }
 
     func button(data: SliderData) -> some View {
         let aw = (data.side == .left ? 1 : -1) * Config.arrowWidth / 2
@@ -57,7 +61,7 @@ struct LiquidSwipeView: View {
         .opacity(data.buttonOpacity)
     }
 
-    func wave(data: Binding<SliderData>) -> some View {
+    func wave(data: Binding<SliderData>, side : SliderSide) -> some View {
         let gesture = DragGesture().onChanged {
             self.topSlider = data.wrappedValue.side
             data.wrappedValue = data.wrappedValue.drag(value: $0)
@@ -68,18 +72,18 @@ struct LiquidSwipeView: View {
                     data.wrappedValue = data.wrappedValue.initial()
                 }
             } else {
-                self.swipe(data: data)
+                self.swipe(data: data, side: side)
             }
         }
         .simultaneously(with: TapGesture().onEnded {
             self.topSlider = data.wrappedValue.side
-            self.swipe(data: data)
+            self.swipe(data: data,side: side)
         })
         return WaveView(data: data.wrappedValue).gesture(gesture)
             .foregroundColor(Config.colors[index(of: data.wrappedValue)])
     }
 
-    private func swipe(data: Binding<SliderData>) {
+    private func swipe(data: Binding<SliderData>, side : SliderSide) {
         withAnimation() {
             data.wrappedValue = data.wrappedValue.final()
         }
@@ -91,6 +95,23 @@ struct LiquidSwipeView: View {
             self.sliderOffset = 100
             withAnimation(.spring(dampingFraction: 0.5)) {
                 self.sliderOffset = 0
+                if side == .left {
+                    if currentPage == .stopwatch{
+                        currentPage = .homepage
+                    }
+                    else{
+                        currentPage = .timer
+                    }
+                }
+                else if side == .right{
+                    if currentPage == .timer{
+                        currentPage = .homepage
+                    }
+                    else{
+                        currentPage = .stopwatch
+                    }
+                }
+                
             }
         }
     }

@@ -23,8 +23,8 @@ enum StopwatchMode {
     case initial
 }
 
-//enum pages{
-//    case stopwatch
-//    case timer
-//    case homepage
-//}
+enum pages{
+    case stopwatch
+    case timer
+    case homepage
+}
