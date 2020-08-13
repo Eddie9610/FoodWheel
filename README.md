@@ -8,6 +8,10 @@ colorful liquidswipe.
 
 It is a student work. 
 
+Added page swip change
+
+Home page and Stopwatch page are not completed
+
 More features and bug fixing will come in weeks. 
 
 
