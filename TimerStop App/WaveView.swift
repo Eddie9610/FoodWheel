@@ -19,7 +19,7 @@ struct WaveView: Shape {
         self.centerY = data.centerY
         self.progress = data.progress
     }
-
+ 
     internal var animatableData: AnimatablePair<Double, Double> {
         get { AnimatablePair(centerY, progress) }
         set {
