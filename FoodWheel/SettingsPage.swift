@@ -8,63 +8,72 @@
 
 import SwiftUI
 import Combine
+import UIKit
 
 struct SettingsPage: View {
-    
     @ObservedObject var settings: UserSettings
     @ObservedObject var value = NumbersOnly()
     @State var distance: Float = 10
     var body: some View {
-        VStack{
             GeometryReader{ f in
-                Text("Settings")
-                    .fontWeight(.bold)
-                    .padding(.leading, f.size.width / 25)
-                    .font(.system(size: 55))
-                    .multilineTextAlignment(.leading)
-                    .lineLimit(1)
-                    .frame(width: f.size.width,height: 70, alignment: .topLeading)
-                VStack {
-                    HStack {
-                            TextField("Number of restaurants: ", text: $value.value, onCommit: {
-                                UIApplication.shared.endEditing()
-                            })
-                                .keyboardType(.asciiCapableNumberPad)
-                                .textFieldStyle(RoundedBorderTextFieldStyle())
-                            Button("Apply"){
-                                if value.value.isEmpty {
-                                    settings.PiecesOfCircle = 3
-                                }
-                                else {
-                                    settings.PiecesOfCircle = Int(value.value)!
-                                }
-                                UIApplication.shared.endEditing()
-                                value.value = ""
-                            }
-                            .frame(width: 80, height: 30, alignment: .center)
-                        }
-                    .padding(.top, f.size.height / 8)
-                    
-                    HStack {
-                        Text("5")
-                        Slider(value: Binding(
-                                get: {
-                                    distance
-                                },
-                                set: { (newValue) in
-                                    distance = newValue
-                                    changeDistance(settings: settings, value: distance)
-                                }
-                        ), in: 5...50, step: 1)
-                        Text("50")
-                    }
-                    Text("\(Int(distance))")
+                NavigationView {
                     List{
+                        HStack {
+                                TextField("Number of choices: Max 15", text: $value.value, onCommit: {
+                                    UIApplication.shared.endEditing()
+                                })
+                                    .keyboardType(.asciiCapableNumberPad)
+                                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                                Button("Apply"){
+                                    if value.value.isEmpty {
+                                        settings.PiecesOfCircle = 3
+                                    }
+                                    else if Int(value.value)! < 2 {
+                                        settings.PiecesOfCircle = 3
+                                    }
+                                    else if Int(value.value)! > 15{
+                                        settings.PiecesOfCircle = 15
+                                    }
+                                    else {
+                                        settings.PiecesOfCircle = Int(value.value)!
+                                    }
+                                    UIApplication.shared.endEditing()
+                                    value.value = ""
+                                }
+                                .frame(width: 80, height: 30, alignment: .center)
+                            }
+                        .padding(.vertical, 10)
                         
-                    }
+                        HStack {
+                            Text("5")
+                            Slider(value: Binding(
+                                    get: {
+                                        distance
+                                    },
+                                    set: { (newValue) in
+                                        distance = newValue
+                                    }
+                            ), in: 5...50, step: 1)
+                            Text("50")
+                            Text("(\(Int(distance)) KM)")
+                        }
+                    }.navigationBarTitle(Text("Settings"), displayMode: .large)
+                    .navigationBarItems(trailing:
+                        HStack{
+                            Button(action: {
+                                // Save action
+                                changeDistance(settings: settings, value: distance)
+                            }){
+                                Text("Save")
+                                    .font(.subheadline)
+                                Image(systemName: "play.fill")
+                                    .foregroundColor(.pink)
+                                    .font(.largeTitle)
+                                
+                            }
+                    })
                 }
-           }
-        }
+            }
     }
     func changeDistance(settings: UserSettings, value: Float) {
         settings.Distance = Int(value)

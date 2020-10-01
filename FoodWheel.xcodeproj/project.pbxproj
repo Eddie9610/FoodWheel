@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C010BCC252692B400C38786 /* ListOfRestaurantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C010BCB252692B400C38786 /* ListOfRestaurantView.swift */; };
 		2C012399251162D10045BF79 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C012398251162D10045BF79 /* AppDelegate.swift */; };
 		2C01239B251162D10045BF79 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C01239A251162D10045BF79 /* SceneDelegate.swift */; };
 		2C01239D251162D10045BF79 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C01239C251162D10045BF79 /* ContentView.swift */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2C010BCB252692B400C38786 /* ListOfRestaurantView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOfRestaurantView.swift; sourceTree = "<group>"; };
 		2C012395251162D10045BF79 /* FoodWheel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoodWheel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C012398251162D10045BF79 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2C01239A251162D10045BF79 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -74,6 +76,7 @@
 				2C196667251808E300467D91 /* SplitLine.swift */,
 				2C1966762518389900467D91 /* ArcWheel.swift */,
 				2C196672251810AE00467D91 /* model.swift */,
+				2C010BCB252692B400C38786 /* ListOfRestaurantView.swift */,
 				2C01239E251162D20045BF79 /* Assets.xcassets */,
 				2C0123A3251162D20045BF79 /* LaunchScreen.storyboard */,
 				2C0123A6251162D20045BF79 /* Info.plist */,
@@ -161,6 +164,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C010BCC252692B400C38786 /* ListOfRestaurantView.swift in Sources */,
 				2C012399251162D10045BF79 /* AppDelegate.swift in Sources */,
 				2C196668251808E300467D91 /* SplitLine.swift in Sources */,
 				2C01239B251162D10045BF79 /* SceneDelegate.swift in Sources */,
