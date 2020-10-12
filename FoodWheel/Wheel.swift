@@ -30,11 +30,15 @@ struct Wheel: View {
                 }
             }
             .frame(width: 300, height: 300, alignment: .bottomLeading)
-            .rotationEffect(.degrees(settings.animationAmount))
-            .animation(.spring(response: 4, dampingFraction: 0.8, blendDuration: 2))
-
+            .rotationEffect(.degrees(Double(settings.animationAmount)))
             Button("rotate"){
-                settings.animationAmount += Double.random(in: 300..<2000)
+                //settings.animationAmount += Int.random(in: 300..<2000)
+                withAnimation(.spring(response: 4, dampingFraction: 0.8, blendDuration: 2)){
+                    settings.animationAmount += Int.random(in: 300..<2000)
+                }
+                DispatchQueue.main.asyncAfter(deadline: .now() + 4.5){
+                    settings.animationAmount = settings.animationAmount % 360
+                }
             }
             .padding(.top, 30)
         }

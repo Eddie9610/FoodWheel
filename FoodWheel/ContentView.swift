@@ -10,6 +10,7 @@ import SwiftUI
 
 struct ContentView: View {
     @ObservedObject var settings = UserSettings()
+    
     var body: some View {
         HStack{
             TabView(selection: .constant(1)) {
@@ -17,18 +18,18 @@ struct ContentView: View {
                     .frame(width: 350, height: 600, alignment: .top)
                     .tabItem {Image(systemName: "timelapse")
                         Text("\( settings.animationAmount)")}.tag(1)
-                
                 SettingsPage(settings: settings).tabItem {Image(systemName: "list.bullet")
                     Text("Settings") }.tag(2)
             }
         }
     }
     
+    
     func RotateLine(num: Int) -> [Double] {
         if num == 0 {
             return []
         }
-        var temp: [Double] = []
+        var temp: [Double] =    []
         for i in 0...num-1 {
             temp.append(Double(i)*Double((360/num)))
         }
