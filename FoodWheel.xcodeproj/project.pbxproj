@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -19,6 +19,9 @@
 		2C1966772518389900467D91 /* ArcWheel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1966762518389900467D91 /* ArcWheel.swift */; };
 		2C96E0A32512E5FF000BAE41 /* Wheel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C96E0A22512E5FF000BAE41 /* Wheel.swift */; };
 		2CA8EC2A251C836C00508242 /* SettingsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C19666B25180F6100467D91 /* SettingsPage.swift */; };
+		2CAA0769255CDCF900F1C8B4 /* businesses.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 2CAA0768255CDCF900F1C8B4 /* businesses.graphql */; };
+		2CAA076C255CDD0100F1C8B4 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAA076B255CDD0100F1C8B4 /* API.swift */; };
+		2CAA0770255CDED800F1C8B4 /* Apollo in Frameworks */ = {isa = PBXBuildFile; productRef = 2CAA076F255CDED800F1C8B4 /* Apollo */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +39,8 @@
 		2C196672251810AE00467D91 /* model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = model.swift; sourceTree = "<group>"; };
 		2C1966762518389900467D91 /* ArcWheel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArcWheel.swift; sourceTree = "<group>"; };
 		2C96E0A22512E5FF000BAE41 /* Wheel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wheel.swift; sourceTree = "<group>"; };
+		2CAA0768255CDCF900F1C8B4 /* businesses.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = businesses.graphql; sourceTree = "<group>"; };
+		2CAA076B255CDD0100F1C8B4 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +48,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2CAA0770255CDED800F1C8B4 /* Apollo in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,15 +74,9 @@
 		2C012397251162D10045BF79 /* FoodWheel */ = {
 			isa = PBXGroup;
 			children = (
-				2C012398251162D10045BF79 /* AppDelegate.swift */,
-				2C01239A251162D10045BF79 /* SceneDelegate.swift */,
-				2C01239C251162D10045BF79 /* ContentView.swift */,
-				2C96E0A22512E5FF000BAE41 /* Wheel.swift */,
-				2C19666B25180F6100467D91 /* SettingsPage.swift */,
-				2C196667251808E300467D91 /* SplitLine.swift */,
-				2C1966762518389900467D91 /* ArcWheel.swift */,
+				2CAA0762255CDBE100F1C8B4 /* GraphQL */,
+				2C0A95D7255CECE800027728 /* Views */,
 				2C196672251810AE00467D91 /* model.swift */,
-				2C010BCB252692B400C38786 /* ListOfRestaurantView.swift */,
 				2C01239E251162D20045BF79 /* Assets.xcassets */,
 				2C0123A3251162D20045BF79 /* LaunchScreen.storyboard */,
 				2C0123A6251162D20045BF79 /* Info.plist */,
@@ -93,6 +93,30 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		2C0A95D7255CECE800027728 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2C012398251162D10045BF79 /* AppDelegate.swift */,
+				2C01239A251162D10045BF79 /* SceneDelegate.swift */,
+				2C01239C251162D10045BF79 /* ContentView.swift */,
+				2C96E0A22512E5FF000BAE41 /* Wheel.swift */,
+				2C19666B25180F6100467D91 /* SettingsPage.swift */,
+				2C196667251808E300467D91 /* SplitLine.swift */,
+				2C1966762518389900467D91 /* ArcWheel.swift */,
+				2C010BCB252692B400C38786 /* ListOfRestaurantView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		2CAA0762255CDBE100F1C8B4 /* GraphQL */ = {
+			isa = PBXGroup;
+			children = (
+				2CAA0768255CDCF900F1C8B4 /* businesses.graphql */,
+				2CAA076B255CDD0100F1C8B4 /* API.swift */,
+			);
+			path = GraphQL;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -103,12 +127,16 @@
 				2C012391251162D10045BF79 /* Sources */,
 				2C012392251162D10045BF79 /* Frameworks */,
 				2C012393251162D10045BF79 /* Resources */,
+				2C7F1D64255CE15400242193 /* ShellScript */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = FoodWheel;
+			packageProductDependencies = (
+				2CAA076F255CDED800F1C8B4 /* Apollo */,
+			);
 			productName = FoodWheel;
 			productReference = 2C012395251162D10045BF79 /* FoodWheel.app */;
 			productType = "com.apple.product-type.application";
@@ -137,6 +165,9 @@
 				Base,
 			);
 			mainGroup = 2C01238C251162D10045BF79;
+			packageReferences = (
+				2CAA076E255CDED800F1C8B4 /* XCRemoteSwiftPackageReference "apollo-ios" */,
+			);
 			productRefGroup = 2C012396251162D10045BF79 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -154,10 +185,31 @@
 				2C0123A5251162D20045BF79 /* LaunchScreen.storyboard in Resources */,
 				2C0123A2251162D20045BF79 /* Preview Assets.xcassets in Resources */,
 				2C01239F251162D20045BF79 /* Assets.xcassets in Resources */,
+				2CAA0769255CDCF900F1C8B4 /* businesses.graphql in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2C7F1D64255CE15400242193 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\ncd \"${SRCROOT}\"/Codegen\nxcrun -sdk macosx swift run\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		2C012391251162D10045BF79 /* Sources */ = {
@@ -168,6 +220,7 @@
 				2C012399251162D10045BF79 /* AppDelegate.swift in Sources */,
 				2C196668251808E300467D91 /* SplitLine.swift in Sources */,
 				2C01239B251162D10045BF79 /* SceneDelegate.swift in Sources */,
+				2CAA076C255CDD0100F1C8B4 /* API.swift in Sources */,
 				2CA8EC2A251C836C00508242 /* SettingsPage.swift in Sources */,
 				2C1966772518389900467D91 /* ArcWheel.swift in Sources */,
 				2C01239D251162D10045BF79 /* ContentView.swift in Sources */,
@@ -368,6 +421,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		2CAA076E255CDED800F1C8B4 /* XCRemoteSwiftPackageReference "apollo-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apollographql/apollo-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.36.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		2CAA076F255CDED800F1C8B4 /* Apollo */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2CAA076E255CDED800F1C8B4 /* XCRemoteSwiftPackageReference "apollo-ios" */;
+			productName = Apollo;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 2C01238D251162D10045BF79 /* Project object */;
 }

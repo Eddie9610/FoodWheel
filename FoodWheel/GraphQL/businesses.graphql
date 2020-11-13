@@ -1,0 +1,17 @@
+query Business($searchTerm: String, $latitude: Float, $longitude: Float) {
+    search(term: $searhTerm, latitude: $latitude, longitude: $longitude) {
+        business{
+            ...BusinessFragment
+        }
+    }
+}
+
+
+fragment BusinessFragment on Business {
+    id
+    name
+    url
+    rating
+    photos
+    distance
+}
