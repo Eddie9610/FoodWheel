@@ -1,4 +1,4 @@
-# TimerStopProject
+# FoodWheel
 
 This is my first Swift App and first github git.
 
