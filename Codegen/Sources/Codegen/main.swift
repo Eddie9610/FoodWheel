@@ -18,7 +18,7 @@ let graphQLFolder = projectDirectory.appendingPathComponent("GraphQLSwiftUI").ap
 //2) Make the objects to hold the Yelp API information
 let yelpGraphQLURL = URL(string: "https://api.yelp.com/v3/graphql")!
 
-let yelpAPIKey: String = "WGx3oHw29T-8mJ6Ux9ugmKyS4k_zMOqLUa6dukuLxKrr4yeAVu_auCtwkpjQ1Fp8mJRqDjQye_knfkPlRitX5LCXYOm3edKsPG5CpYfGHpxSWd1IVSzJIiZe8aOsX3Yx"
+let yelpAPIKey: String = "YOUR YELP API KEY"
 
 //3) Make the ApolloSchemaOptions that will help accomplish our two tasks.
 let schemaDownloadOptions: ApolloSchemaOptions = ApolloSchemaOptions.init(endpointURL: yelpGraphQLURL, header: "Authorization: Bearer \(yelpAPIKey)", outputFolderURL: graphQLFolder)
