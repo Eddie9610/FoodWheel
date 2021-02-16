@@ -7,10 +7,19 @@
 //
 
 import SwiftUI
+import Combine
+import CoreLocation
 
 struct ListOfRestaurantView: View {
+    @ObservedObject var fetcher = DataFetcher()
+    
     var body: some View {
-        Text("Hello, World!")
+        ForEach(fetcher.businessesList, id: \.id){ venue in
+            HStack{
+                Text("\(venue.name!)")
+                }
+                
+            }
     }
 }
 

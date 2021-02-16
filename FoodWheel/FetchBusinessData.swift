@@ -8,14 +8,18 @@
 import Foundation
 import SwiftUI
 
-class ViewController {
+public class DataFetcher: ObservableObject {
+    @Published var businessesList : [Venue] = []
+    
+    init(){
+        retrieveVenues(latitude: 49.2827, longitude: 123.1207, category: "restaurants", limit: 3, sortBy: "asc", locale: "eb_US")
+    }
     func retrieveVenues(latitude: Double,
                         longitude: Double,
                         category: String,
                         limit: Int,
                         sortBy: String,
-                        locale: String,
-                        completionHandler:@escaping ([Venue]?, Error?) -> Void) {
+                        locale: String) {
         let apikey = "_vNRydF3V5Ca5nNfqokIE4U9nfO4kcCro1OVmFUM9vCpXcWFidCk4QXIt5htUsnCk8BUG24_i2C5x-vbq5I31SLf6rsC-6UEtyEKvqjV8JofSQ_69u8pVuMJv78hYHYx"
         
         let baseURL = "https://api.yelp.com/v3/businesses/search?latitude=\(latitude)&longitude=\(longitude)&categories=\(category)&limit=\(limit)&sort_by=\(sortBy)&locale=\(locale)"
@@ -27,9 +31,6 @@ class ViewController {
         
         //initialize
         URLSession.shared.dataTask(with: request){ (data,response, error) in
-            if let error = error{
-                completionHandler(nil, error)
-            }
             do {
                 
                 // read data as JSON
@@ -40,10 +41,9 @@ class ViewController {
                 
                 // businesses
                 guard let businesses = resp.value(forKey: "businesses") as? [NSDictionary] else {return}
-                
-                var venuesList : [Venue] = []
-                
+                                
                 // accessing each bussiness
+                self.businessesList.removeAll()
                 for business in businesses{
                     var venue = Venue()
                     venue.name =  business.value(forKey: "name") as? String
@@ -54,17 +54,14 @@ class ViewController {
                     venue.distance = business.value(forKey: "distance") as? Double
                     let address = business.value(forKeyPath: "location.display_address") as? [String]
                     venue.address = address?.joined(separator: "\n")
-                    venuesList.append(venue)
+                    self.businessesList.append(venue)
                 }
-                
-                
-                
-                
-                
-                completionHandler(venuesList, nil)
+
             }catch {
                 print("Caught error")
             }
         }.resume()
     }
 }
+
+
