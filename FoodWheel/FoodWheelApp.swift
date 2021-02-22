@@ -12,6 +12,7 @@ struct FoodWheelApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+//            ListOfRestaurantView(landmarkClass: landmarks())
         }
     }
 }

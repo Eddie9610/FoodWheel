@@ -13,11 +13,13 @@ import UIKit
 struct SettingsPage: View {
     @ObservedObject var settings: UserSettings
     @ObservedObject var value = NumbersOnly()
+    @ObservedObject var landmarkClass: landmarks
     @State var distance: Float = 10
     var body: some View {
             GeometryReader{ f in
                 NavigationView {
                     List{
+                        // Number of Choice textFiled
                         HStack {
                                 TextField("Number of choices: Max 15", text: $value.value, onCommit: {
                                     UIApplication.shared.endEditing()
@@ -49,7 +51,7 @@ struct SettingsPage: View {
                             Text("\(settings.ArcUIColorArray.count)")
                             }
                         .padding(.vertical, 10)
-                        
+                        // Slide Bar Stack
                         HStack {
                             Text("5")
                             Slider(value: Binding(
@@ -63,6 +65,8 @@ struct SettingsPage: View {
                             Text("50")
                             Text("(\(Int(distance)) KM)")
                         }
+                        // Restaurants list
+                        ListOfRestaurantView(landmarkClass: landmarkClass)
                     }.navigationBarTitle(Text("Settings"), displayMode: .large)
                     .navigationBarItems(trailing:
                         HStack{
@@ -80,6 +84,7 @@ struct SettingsPage: View {
                                 
                             }
                     })
+                    
                 }
             }
     }
@@ -92,7 +97,7 @@ struct SettingsPage: View {
 
 struct SettingsPage_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsPage(settings: UserSettings())
+        SettingsPage(settings: UserSettings(), landmarkClass: landmarks())
     }
 }
 
